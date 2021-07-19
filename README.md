@@ -1,10 +1,16 @@
 # ocaml-box
 
-Render boxes in the terminal with OCaml / Reason
+```
 
-![](./docs/screenshot.png)
+    ╭─────────────────────────────────────────────────╮
+    │                                                 │
+    │   Render those kinds of boxes in the terminal   │
+    │                                                 │
+    ╰─────────────────────────────────────────────────╯
 
-Port of https://github.com/sindresorhus/boxen to Reason
+```
+Render boxes in the terminal with OCaml / Reason.
+Port of https://github.com/sindresorhus/boxen.
 
 ## Features
 
