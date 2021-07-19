@@ -1,0 +1,86 @@
+name: Release
+
+on:
+  release:
+    types: published
+
+jobs:
+  publish:
+    needs: build
+    name: Publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Download _release
+        uses: actions/download-artifact@master
+        with:
+          name: _release
+          path: _release
+
+      - name: Download linux artifacts
+        uses: actions/download-artifact@master
+        with:
+          name: ubuntu-latest
+          path: _release/platform-linux-x64
+
+      - name: Download macOS artifacts
+        uses: actions/download-artifact@master
+        with:
+          name: macos-latest
+          path: _release/platform-darwin-x64
+
+      - name: Download Windows artifacts
+        uses: actions/download-artifact@master
+        with:
+          name: windows-latest
+          path: _release/platform-windows-x64
+
+      - name: Create archives for Github release
+        run: |
+          cd _release/platform-darwin-x64
+          zip -r ../../ocaml-box-darwin-x64.zip .
+          cd ../..
+
+          cd _release/platform-linux-x64
+          zip -r ../../ocaml-box-linux-x64.zip .
+          cd ../..
+
+          cd _release/platform-windows-x64
+          zip -r ../../ocaml-box-windows-x64.zip .
+          cd ../..
+
+      - name: Upload ocaml-box-darwin-x64.zip to Github release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ocaml-box-darwin-x64.zip
+          asset_name: ocaml-box-darwin-x64.zip
+          asset_content_type: application/gzip
+
+      - name: Upload ocaml-box-linux-x64.zip to Github release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ocaml-box-linux-x64.zip
+          asset_name: ocaml-box-linux-x64.zip
+          asset_content_type: application/gzip
+
+      - name: Publish NPM package
+        run: |
+          npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+          npm config set scope "@davesnx"
+          npm config list
+          npm publish --access public
+        working-directory: ./_release
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

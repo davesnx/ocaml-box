@@ -1,0 +1,8 @@
+(library
+ (name ocaml_box)
+ (public_name ocaml-box)
+ (flags (:standard -open StdLabels))
+ (libraries core base)
+)
+
+(include_subdirs unqualified)

@@ -1,0 +1,8 @@
+(executable
+ (name main)
+ (public_name ocaml-box)
+ (libraries ocaml_box)
+ (flags
+  (:standard -open Ocaml_box)))
+
+(include_subdirs unqualified)
