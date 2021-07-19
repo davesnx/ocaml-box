@@ -17,6 +17,7 @@ depends: [
   "cmdliner"
   "logs"
   "core"
+  "base"
   "fmt"
 ]
 dev-repo: "git+https://github.com/davesnx/ocaml-box.git"
