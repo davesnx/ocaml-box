@@ -2,6 +2,10 @@
 
 Render boxes in the terminal with OCaml / Reason
 
+![](./docs/screenshot.png)
+
+Port of https://github.com/sindresorhus/boxen to Reason
+
 ## Features
 
 - Available on all major platform (Windows, Linux and Windows)
