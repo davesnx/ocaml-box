@@ -15,7 +15,7 @@ if [ -d ".git" ]; then
   else
     dune-release tag
     dune-release distrib
-    dune-release publish distrib -y
+    dune-release publish -y
     dune-release opam pkg
     dune-release opam submit --no-auto-open -y
   fi
