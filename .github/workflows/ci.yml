@@ -38,7 +38,9 @@ jobs:
           ocaml-version: ${{ matrix.ocaml-version }}
 
       - name: Pin package
-        run: opam pin add ocaml-box.dev . --no-action
+        run: |
+          opam pin add -y rely https://github.com/facebookexperimental/reason-native.git
+          opam pin add ocaml-box.dev . --no-action
 
       - name: Query and install external dependencies
         run: opam depext ocaml-box --yes --with-doc --with-test
