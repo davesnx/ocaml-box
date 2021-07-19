@@ -37,14 +37,17 @@ $(eval $(ARGS):;@:)
 all:
 	$(DUNE) build --root . @install
 
-.PHONY: dev
-dev: ## Install development dependencies
-	opam pin add -y ocaml-lsp-server https://github.com/ocaml/ocaml-lsp.git
-	opam install -y dune-release merlin ocamlformat utop ocaml-lsp-server
+.PHONY: pin-reason-native
+pin-reason-native:
 	opam pin add -y pastel https://github.com/facebookexperimental/reason-native.git
 	opam pin add -y cli https://github.com/facebookexperimental/reason-native.git
 	opam pin add -y file-context-printer https://github.com/facebookexperimental/reason-native.git
 	opam pin add -y rely https://github.com/facebookexperimental/reason-native.git
+
+.PHONY: dev
+dev: pin-reason-native ## Install development dependencies
+	opam pin add -y ocaml-lsp-server https://github.com/ocaml/ocaml-lsp.git
+	opam install -y dune-release merlin ocaml-lsp-server
 	opam install --deps-only --with-test --with-doc -y .
 
 .PHONY: build

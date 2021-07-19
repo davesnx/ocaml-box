@@ -39,7 +39,7 @@ jobs:
 
       - name: Pin package
         run: |
-          opam pin add -y rely https://github.com/facebookexperimental/reason-native.git
+          make pin-reason-native
           opam pin add ocaml-box.dev . --no-action
 
       - name: Query and install external dependencies
