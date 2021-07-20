@@ -16,7 +16,6 @@ depends: [
   "reason" {build}
   "cmdliner"
   "logs"
-  "core"
   "base"
   "fmt"
 ]

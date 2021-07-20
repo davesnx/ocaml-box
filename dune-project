@@ -22,7 +22,6 @@ Render boxes in the terminal, can configure the padding, margin and the border o
   (reason :build)
   cmdliner
   logs
-  core
   base
   fmt
  )

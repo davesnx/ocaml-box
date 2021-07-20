@@ -22,8 +22,8 @@ let makeEmpty = value => String.make(value, ' ');
 
 let getTerminalColumns = () => {
   Sys.getenv_opt("COLUMNS")
-  |> Core.Option.bind(~f=int_of_string_opt)
-  |> Core.Option.value(~default=80);
+  |> Base.Option.bind(~f=int_of_string_opt)
+  |> Base.Option.value(~default=80);
 };
 
 let box = (~padding=0, ~margin=0, ~kind=Round, text) => {
