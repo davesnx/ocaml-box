@@ -2,8 +2,17 @@
 
 print_endline(
   Box.render(
-    ~margin=2,
-    ~padding=1,
-    "Render those kinds of boxes in the terminal",
-  ),
+        ~kind=
+          Border.Custom({
+            Border.topLeft: {|1|},
+            top: {|.|},
+            topRight: {|2|},
+            right: {|.|},
+            bottomRight: {|3|},
+            bottom: {|.|},
+            bottomLeft: {|4|},
+            left: {|.|},
+          }),
+        "foo",
+      )
 );
