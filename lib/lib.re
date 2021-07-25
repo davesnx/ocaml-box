@@ -3,7 +3,7 @@ open Border;
 let split_lines = Base.String.split_lines;
 
 let repeat = (~sep="", times, str) => {
-  let listOfStrings = Array.init(times, ~f=_ => str) |> Array.to_list;
+  let listOfStrings = Base.Array.init(times, ~f=_ => str) |> Array.to_list;
   String.concat(~sep, listOfStrings);
 };
 
