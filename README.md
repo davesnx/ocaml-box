@@ -26,18 +26,18 @@ Port of https://github.com/sindresorhus/boxen.
 
 ## Installation
 
-### Using opam (not available in opam yet)
+### Using opam
 
 ```bash
-opam install ocaml-box
+opam install box
+# Since isn't available you can install it with `opam pin https://github.com/davesnx/ocaml-box`
 ```
 
-### Using npm
+### Using esy
 
 ```bash
-yarn global add ocaml-box
-# or
-npm -g install ocaml-box
+esy add @opam/box
+# Since isn't available you can install it with `esy add https://github.com/davesnx/ocaml-box or with a resolution`
 ```
 
 ## Usage
@@ -101,5 +101,6 @@ Check `lib/box.rei` and `lib/border.rei`.
 
 Take a look at our [Contributing Guide](CONTRIBUTING.md).
 
+### Status
+
 [![Actions Status](https://github.com/davesnx/ocaml-box/workflows/CI/badge.svg)](https://github.com/davesnx/ocaml-box/actions)
-[![NPM Version](https://badge.fury.io/js/%40davesnx%2Focaml-box.svg)](https://badge.fury.io/js/%40davesnx%2Focaml-box)
