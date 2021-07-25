@@ -46,6 +46,7 @@ pin-reason-native:
 
 .PHONY: dev
 dev: pin-reason-native ## Install development dependencies
+	git config core.hooksPath .githooks
 	opam pin add -y ocaml-lsp-server https://github.com/ocaml/ocaml-lsp.git
 	opam install -y dune-release merlin ocaml-lsp-server
 	opam install --deps-only --with-test --with-doc -y .
