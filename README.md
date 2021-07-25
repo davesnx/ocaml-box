@@ -9,7 +9,7 @@
     ╰─────────────────────────────────────────────────╯
 
 ```
-Render boxes in the terminal with OCaml / Reason.
+Render boxes in the terminal with OCaml or Reason.
 Port of https://github.com/sindresorhus/boxen.
 
 ## Features
@@ -42,7 +42,7 @@ esy add @opam/box
 
 ## Usage
 
-It can be used in OCaml / Reason
+It can be used in either OCaml, either Reason, showing the usage in Reason:
 
 ```reason
 print_endline(
