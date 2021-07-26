@@ -1,15 +1,16 @@
 open Border;
+open Base;
 
-let split_lines = Base.String.split_lines;
+let split_lines = String.split_lines;
 
-let repeat = (~sep="", times, str) => {
-  let listOfStrings = Base.Array.init(times, ~f=_ => str) |> Array.to_list;
+let repeat = (~sep: string, times, str) => {
+  let listOfStrings = Array.init(times, ~f=_ => str) |> Array.to_list;
   String.concat(~sep, listOfStrings);
 };
 
 let widestLine = str => {
-  let lines = str |> Base.String.split_lines;
-  lines
+  str
+  |> split_lines
   |> List.fold_left(
        ~f=(current, acc) => max(current, String.length(acc)),
        ~init=0,
@@ -21,9 +22,9 @@ let newLine = "\n";
 let makeEmpty = value => String.make(value, ' ');
 
 let getTerminalColumns = () => {
-  Sys.getenv_opt("COLUMNS")
-  |> Base.Option.bind(~f=int_of_string_opt)
-  |> Base.Option.value(~default=80);
+  Sys.getenv("COLUMNS")
+  |> Option.bind(~f=Caml.int_of_string_opt)
+  |> Option.value(~default=80);
 };
 
 let box = (~padding=0, ~margin=0, ~kind=Round, text) => {
@@ -35,10 +36,10 @@ let box = (~padding=0, ~margin=0, ~kind=Round, text) => {
   let marginLeft = makeEmpty(marginLeftValue);
   let paddingLeft = makeEmpty(paddingLeftValue);
   let contentWidth = widestLine(text) + paddingLeftValue * 2;
-  let marginTop = repeat(margin, newLine);
-  let marginBottom = repeat(margin, newLine);
-  let horitzontalTop = repeat(contentWidth, symbols.top);
-  let horitzontalBottom = repeat(contentWidth, symbols.bottom);
+  let marginTop = repeat(~sep="", margin, newLine);
+  let marginBottom = repeat(~sep="", margin, newLine);
+  let horitzontalTop = repeat(~sep="", contentWidth, symbols.top);
+  let horitzontalBottom = repeat(~sep="", contentWidth, symbols.bottom);
 
   let renderLine = line => {
     let paddingRightValue =
