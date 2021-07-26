@@ -1,3 +1,6 @@
+## 1.0.1
+- Fix prod build
+
 ## 1.0.0
 - Render text inside boxes
 - Modify the border
