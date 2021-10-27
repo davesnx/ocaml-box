@@ -1,33 +1,40 @@
 open Border;
-open Base;
 
-let split_lines = String.split_lines;
+let splitLines = (text) => text |> Base.String.split_lines |> List.map(String.trim);
+let textLength = Base.String.length; /* TODO: Implement ascii length */
+let concat = String.concat("");
 
-let repeat = (~sep: string, times, str) => {
-  let listOfStrings = Array.init(times, ~f=_ => str) |> Array.to_list;
-  String.concat(~sep, listOfStrings);
+let repeat = (~sep, times, str) => {
+  let listOfStrings = Array.init(times, _ => str) |> Array.to_list;
+  String.concat(sep, listOfStrings);
 };
 
-let widestLine = str => {
-  str
-  |> split_lines
+let calculateWidestLine = text => {
+  text
+  |> splitLines
   |> List.fold_left(
-       ~f=(current, acc) => max(current, String.length(acc)),
-       ~init=0,
-     );
+      (current, acc) => max(current, textLength(acc)),
+      0,
+    );
 };
 
 let newLine = "\n";
 
-let makeEmpty = value => String.make(value, ' ');
-
-let getTerminalColumns = () => {
-  Sys.getenv("COLUMNS")
-  |> Option.bind(~f=Caml.int_of_string_opt)
-  |> Option.value(~default=80);
+let makeEmpty = value => {
+  if (value > 0) {
+    String.make(value, ' ')
+  } else {
+    ""
+  }
 };
 
-let box = (~padding=0, ~margin=0, ~kind=Round, text) => {
+let getTerminalColumns = () => {
+  Sys.getenv_opt("COLUMNS");
+};
+
+type alignment = [ | `Left | `Center | `Right];
+
+let box = (~align=`Center, ~padding=0, ~margin=0, ~kind=Round, text) => {
   let _columns = getTerminalColumns();
   let bordersWidth = 2;
   let symbols = Border.symbols(kind);
@@ -35,32 +42,50 @@ let box = (~padding=0, ~margin=0, ~kind=Round, text) => {
   let marginLeftValue = margin * 2;
   let marginLeft = makeEmpty(marginLeftValue);
   let paddingLeft = makeEmpty(paddingLeftValue);
-  let contentWidth = widestLine(text) + paddingLeftValue * 2;
+  let contentWidth = calculateWidestLine(text) + paddingLeftValue * 2;
   let marginTop = repeat(~sep="", margin, newLine);
   let marginBottom = repeat(~sep="", margin, newLine);
   let horitzontalTop = repeat(~sep="", contentWidth, symbols.top);
   let horitzontalBottom = repeat(~sep="", contentWidth, symbols.bottom);
 
-  let renderLine = line => {
+  let renderLine = (text) => {
     let paddingRightValue =
-      contentWidth - String.length(line) - padding - bordersWidth;
+      contentWidth - textLength(text) - padding - bordersWidth;
     let paddingRight = makeEmpty(paddingRightValue);
-    let content = String.concat(~sep="", [paddingLeft, line, paddingRight]);
-    String.concat(
-      ~sep="",
-      [marginLeft, symbols.left, content, symbols.right],
+    let text = concat([paddingLeft, text, paddingRight]);
+    concat(
+      [marginLeft, symbols.left, text, symbols.right],
     );
   };
 
-  let lines = text |> split_lines;
-  let content =
-    lines |> List.map(~f=renderLine) |> String.concat(~sep=newLine);
+  let renderContent = (text) => {
+    let widestLine = text |> calculateWidestLine;
+    let lines = text |> splitLines;
+    switch (align) {
+      | `Left => lines |> List.map(renderLine);
+      | `Right => {
+        lines |> List.map((line) => {
+          let padLeft = widestLine - textLength(line);
+          let left = repeat(~sep=" ", padLeft + 1, "");
+          concat([left, line]) |> renderLine;
+        });
+      }
+      | `Center => {
+        lines |> List.map((line) => {
+          let padRight = (widestLine - textLength(line)) / 2;
+          let left = repeat(~sep=" ", padRight + 1, "");
+          concat([left, line]) |> renderLine;
+        });
+      }
+    }
+  };
+
+  let content = renderContent(text) |> String.concat(newLine);
   let paddingTop = repeat(~sep=newLine, padding, renderLine(""));
   let paddingBottom = repeat(~sep=newLine, padding, renderLine(""));
 
-  let top =
-    String.concat(
-      ~sep="",
+  let first =
+    concat(
       [
         marginTop,
         marginLeft,
@@ -69,14 +94,14 @@ let box = (~padding=0, ~margin=0, ~kind=Round, text) => {
         symbols.topRight,
       ],
     );
-  let middle =
-    padding == 0
-      ? String.concat(~sep=newLine, [content])
-      : String.concat(~sep=newLine, [paddingTop, content, paddingBottom]);
 
-  let bottom =
-    String.concat(
-      ~sep="",
+  let body =
+    padding == 0
+      ? String.concat(newLine, [content])
+      : String.concat(newLine, [paddingTop, content, paddingBottom]);
+
+  let last =
+    concat(
       [
         marginLeft,
         symbols.bottomLeft,
@@ -86,5 +111,5 @@ let box = (~padding=0, ~margin=0, ~kind=Round, text) => {
       ],
     );
 
-  String.concat(~sep=newLine, [top, middle, bottom]);
+  String.concat(newLine, [first, body, last]);
 };

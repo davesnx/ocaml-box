@@ -7,6 +7,7 @@ You need Opam, you can install it by following [Opam's documentation](https://op
 With Opam installed, you can install the dependencies with:
 
 ```bash
+# If it's the first time, `make create-switch`
 make dev
 ```
 

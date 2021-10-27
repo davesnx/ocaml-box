@@ -1,2 +1,8 @@
 let render:
-  (~padding: int=?, ~margin: int=?, ~kind: Border.t=?, string) => string;
+  (
+    ~align: [ | `Left | `Center | `Right]=?,
+    ~padding: int=?,
+    ~margin: int=?,
+    ~kind: Border.t=?,
+    string
+  ) => string;

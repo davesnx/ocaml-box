@@ -37,6 +37,10 @@ $(eval $(ARGS):;@:)
 all:
 	$(DUNE) build --root . @install
 
+.PHONY: create-switch
+create-switch:
+	opam switch create . 4.12.0 --deps-only --locked
+
 .PHONY: pin-reason-native
 pin-reason-native:
 	opam pin add -y pastel https://github.com/facebookexperimental/reason-native.git
