@@ -1,5 +1,22 @@
 /* This file's purpose is to test manually and isn't public, it might serve as examples! */
 
+let separator = Box.render(
+  ~margin=0,
+  ~padding=0,
+  ~align=`Center,
+  ~kind=Custom({
+    topLeft: "",
+    top: "",
+    topRight: "",
+    right: "",
+    bottomRight: "",
+    bottom: "",
+    bottomLeft: "",
+    left: "",
+  }),
+  "xxxxxxxxxxxxxxxxxx",
+);
+
 print_endline(
   Box.render(
     ~margin=2,
@@ -9,7 +26,7 @@ print_endline(
   )
 );
 
-print_endline("     xxxxxxxxxxxxxxxxxx");
+print_endline(separator);
 
 print_endline(
   Box.render(
@@ -20,7 +37,7 @@ print_endline(
   )
 );
 
-print_endline("     xxxxxxxxxxxxxxxxxx");
+print_endline(separator);
 
 print_endline(
   Box.render(

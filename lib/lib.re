@@ -1,12 +1,17 @@
 open Border;
 
-let splitLines = (text) => text |> Base.String.split_lines |> List.map(String.trim);
-let textLength = Base.String.length; /* TODO: Implement ascii length */
-let concat = String.concat("");
+let none = "";
+let empty = ' ';
+let newLine = "\n";
 
-let repeat = (~sep, times, str) => {
+let splitLines = (text) => text |> Base.String.split_lines |> List.map(String.trim);
+let textLength = Base.String.length;
+let row = String.concat(newLine);
+let stack = String.concat("");
+
+let repeat = (~between="", times, str) => {
   let listOfStrings = Array.init(times, _ => str) |> Array.to_list;
-  String.concat(sep, listOfStrings);
+  String.concat(between, listOfStrings);
 };
 
 let calculateWidestLine = text => {
@@ -18,74 +23,80 @@ let calculateWidestLine = text => {
     );
 };
 
-let newLine = "\n";
 
-let makeEmpty = value => {
-  if (value > 0) {
-    String.make(value, ' ')
-  } else {
-    ""
-  }
+let renderEmpty = value => {
+  value > 0
+    ? String.make(value, empty)
+    : none
 };
 
-let getTerminalColumns = () => {
-  Sys.getenv_opt("COLUMNS");
+let getTerminalColumns = (): int => {
+  /* Sys.getenv_opt("COLUMNS") |> Option.map(int_of_string) |> Option.value(~default=_ => 80); */
+  130;
 };
 
-type alignment = [ | `Left | `Center | `Right];
+type position = [ | `Left | `Center | `Right];
 
 let box = (~align=`Center, ~padding=0, ~margin=0, ~kind=Round, text) => {
-  let _columns = getTerminalColumns();
-  let bordersWidth = 2;
   let symbols = Border.symbols(kind);
+  let columns = getTerminalColumns();
+  let bordersWidth = 2;
+
   let paddingLeftValue = padding + bordersWidth;
-  let marginLeftValue = margin * 2;
-  let marginLeft = makeEmpty(marginLeftValue);
-  let paddingLeft = makeEmpty(paddingLeftValue);
+  let paddingLeft = renderEmpty(paddingLeftValue);
+
+  let marginTop = repeat(margin, newLine);
+  let marginBottom = repeat(margin, newLine);
+
   let contentWidth = calculateWidestLine(text) + paddingLeftValue * 2;
-  let marginTop = repeat(~sep="", margin, newLine);
-  let marginBottom = repeat(~sep="", margin, newLine);
-  let horitzontalTop = repeat(~sep="", contentWidth, symbols.top);
-  let horitzontalBottom = repeat(~sep="", contentWidth, symbols.bottom);
+  let horitzontalTop = repeat(contentWidth, symbols.top);
+  let horitzontalBottom = repeat(contentWidth, symbols.bottom);
+
+  let calculateMarginLeft = (~columns as _, value) => {
+    value * 2
+  };
+
+  let marginLeftValue = calculateMarginLeft(~columns, margin);
+  let marginLeft = renderEmpty(marginLeftValue);
 
   let renderLine = (text) => {
     let paddingRightValue =
       contentWidth - textLength(text) - padding - bordersWidth;
-    let paddingRight = makeEmpty(paddingRightValue);
-    let text = concat([paddingLeft, text, paddingRight]);
-    concat(
+    let paddingRight = renderEmpty(paddingRightValue);
+    let text = stack([paddingLeft, text, paddingRight]);
+    stack(
       [marginLeft, symbols.left, text, symbols.right],
     );
   };
 
   let renderContent = (text) => {
-    let widestLine = text |> calculateWidestLine;
-    let lines = text |> splitLines;
+    let widestLine = calculateWidestLine(text);
+    let lines = splitLines(text);
     switch (align) {
       | `Left => lines |> List.map(renderLine);
       | `Right => {
         lines |> List.map((line) => {
           let padLeft = widestLine - textLength(line);
-          let left = repeat(~sep=" ", padLeft + 1, "");
-          concat([left, line]) |> renderLine;
+          let left = repeat(padLeft + 1, " ");
+          stack([left, line]) |> renderLine;
         });
       }
       | `Center => {
         lines |> List.map((line) => {
           let padRight = (widestLine - textLength(line)) / 2;
-          let left = repeat(~sep=" ", padRight + 1, "");
-          concat([left, line]) |> renderLine;
+          let left = repeat(padRight + 1, " ");
+          stack([left, line]) |> renderLine;
         });
       }
     }
   };
 
-  let content = renderContent(text) |> String.concat(newLine);
-  let paddingTop = repeat(~sep=newLine, padding, renderLine(""));
-  let paddingBottom = repeat(~sep=newLine, padding, renderLine(""));
+  let content = renderContent(text) |> row;
+  let paddingTop = repeat(~between=newLine, padding, renderLine(""));
+  let paddingBottom = repeat(~between=newLine, padding, renderLine(""));
 
   let first =
-    concat(
+    stack(
       [
         marginTop,
         marginLeft,
@@ -97,11 +108,11 @@ let box = (~align=`Center, ~padding=0, ~margin=0, ~kind=Round, text) => {
 
   let body =
     padding == 0
-      ? String.concat(newLine, [content])
-      : String.concat(newLine, [paddingTop, content, paddingBottom]);
+      ? content
+      : row([paddingTop, content, paddingBottom]);
 
   let last =
-    concat(
+    stack(
       [
         marginLeft,
         symbols.bottomLeft,
@@ -111,5 +122,5 @@ let box = (~align=`Center, ~padding=0, ~margin=0, ~kind=Round, text) => {
       ],
     );
 
-  String.concat(newLine, [first, body, last]);
+  row([first, body, last]);
 };

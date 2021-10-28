@@ -1,6 +1,6 @@
 let render:
   (
-    ~align: [ | `Left | `Center | `Right]=?,
+    ~align: [ `Left | `Center | `Right]=?,
     ~padding: int=?,
     ~margin: int=?,
     ~kind: Border.t=?,
