@@ -1,6 +1,6 @@
 # ocaml-box
 
-```
+```bash
 
     ╭─────────────────────────────────────────────────╮
     │                                                 │
@@ -9,8 +9,9 @@
     ╰─────────────────────────────────────────────────╯
 
 ```
+
 Render boxes in the terminal with OCaml or Reason.
-Port of https://github.com/sindresorhus/boxen.
+Port of [sindresorhus/boxen](https://github.com/sindresorhus/boxen).
 
 ## Features
 
@@ -18,6 +19,7 @@ Port of https://github.com/sindresorhus/boxen.
 - Render boxes with margin, padding and different borders
 
 ### Missing Features
+
 - Alignment
 - Floating
 - Per direction margin/padding
@@ -86,6 +88,7 @@ print_endline(
 ```
 
 ### Interface
+
 ```reason
 let render: (
   ~padding: int=?,
