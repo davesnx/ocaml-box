@@ -3,6 +3,7 @@
 let separator = Box.render(
   ~margin=0,
   ~padding=0,
+  ~float=`Left,
   ~align=`Center,
   ~kind=Custom({
     topLeft: "",
@@ -33,17 +34,7 @@ print_endline(
     ~margin=2,
     ~padding=2,
     ~align=`Center,
+    ~float=`Center,
     "This \nis \na sentence",
-  )
-);
-
-print_endline(separator);
-
-print_endline(
-  Box.render(
-    ~margin=2,
-    ~padding=2,
-    ~align=`Right,
-    "OMG\nTHAT'S PROPER BOX",
   )
 );

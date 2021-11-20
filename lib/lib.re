@@ -31,13 +31,15 @@ let renderEmpty = value => {
 };
 
 let getTerminalColumns = (): int => {
-  /* Sys.getenv_opt("COLUMNS") |> Option.map(int_of_string) |> Option.value(~default=_ => 80); */
-  130;
+  switch (Sys.getenv_opt("COLUMNS")) {
+  | Some(value) => int_of_string(value)
+  | None => 80
+  }
 };
 
 type position = [ | `Left | `Center | `Right];
 
-let box = (~align=`Center, ~padding=0, ~margin=0, ~kind=Round, text) => {
+let box = (~align=`Center, ~float=`Left, ~padding=0, ~margin=0, ~kind=Round, text) => {
   let symbols = Border.symbols(kind);
   let columns = getTerminalColumns();
   let bordersWidth = 2;
@@ -53,7 +55,11 @@ let box = (~align=`Center, ~padding=0, ~margin=0, ~kind=Round, text) => {
   let horitzontalBottom = repeat(contentWidth, symbols.bottom);
 
   let calculateMarginLeft = (~columns as _, value) => {
-    value * 2
+    switch (float) {
+      | `Left => value * 2
+      | `Center => contentWidth - value * 2
+      | `Right => (contentWidth * 2) - value * 2
+    }
   };
 
   let marginLeftValue = calculateMarginLeft(~columns, margin);
@@ -95,7 +101,7 @@ let box = (~align=`Center, ~padding=0, ~margin=0, ~kind=Round, text) => {
   let paddingTop = repeat(~between=newLine, padding, renderLine(""));
   let paddingBottom = repeat(~between=newLine, padding, renderLine(""));
 
-  let first =
+  let header =
     stack(
       [
         marginTop,
@@ -111,7 +117,7 @@ let box = (~align=`Center, ~padding=0, ~margin=0, ~kind=Round, text) => {
       ? content
       : row([paddingTop, content, paddingBottom]);
 
-  let last =
+  let footer =
     stack(
       [
         marginLeft,
@@ -122,5 +128,5 @@ let box = (~align=`Center, ~padding=0, ~margin=0, ~kind=Round, text) => {
       ],
     );
 
-  row([first, body, last]);
+  row([header, body, footer]);
 };
