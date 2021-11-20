@@ -19,6 +19,7 @@ let single = {
   bottomLeft: {|└|},
   left: {|│|},
 };
+
 let double = {
   topLeft: {|╔|},
   top: {|═|},
@@ -29,6 +30,7 @@ let double = {
   bottomLeft: {|╚|},
   left: {|║|},
 };
+
 let round = {
   topLeft: {|╭|},
   top: {|─|},
@@ -39,6 +41,7 @@ let round = {
   bottomLeft: {|╰|},
   left: {|│|},
 };
+
 let bold = {
   topLeft: {|┏|},
   top: {|━|},
@@ -49,6 +52,7 @@ let bold = {
   bottomLeft: {|┗|},
   left: {|┃|},
 };
+
 let singleDouble = {
   topLeft: {|╓|},
   top: {|─|},
@@ -59,6 +63,7 @@ let singleDouble = {
   bottomLeft: {|╙|},
   left: {|║|},
 };
+
 let doubleSingle = {
   topLeft: {|╒|},
   top: {|═|},
@@ -69,6 +74,7 @@ let doubleSingle = {
   bottomLeft: {|╘|},
   left: {|│|},
 };
+
 let classic = {
   topLeft: {|+|},
   top: {|-|},
@@ -79,6 +85,7 @@ let classic = {
   bottomLeft: {|+|},
   left: {|||},
 };
+
 let arrow = {
   topLeft: {|↘|},
   top: {|↓|},
