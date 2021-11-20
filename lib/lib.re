@@ -77,14 +77,14 @@ let box = (~align=`Center, ~padding=0, ~margin=0, ~kind=Round, text) => {
       | `Right => {
         lines |> List.map((line) => {
           let padLeft = widestLine - textLength(line);
-          let left = repeat(padLeft + 1, " ");
+          let left = repeat(padLeft, " ");
           stack([left, line]) |> renderLine;
         });
       }
       | `Center => {
         lines |> List.map((line) => {
           let padRight = (widestLine - textLength(line)) / 2;
-          let left = repeat(padRight + 1, " ");
+          let left = repeat(padRight, " ");
           stack([left, line]) |> renderLine;
         });
       }
