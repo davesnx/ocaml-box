@@ -1,8 +1,6 @@
 /* This file's purpose is to test manually and isn't public, it might serve as examples! */
 
 let separator = Box.render(
-  ~margin=0,
-  ~padding=0,
   ~float=`Left,
   ~align=`Center,
   ~kind=Custom({
@@ -20,8 +18,7 @@ let separator = Box.render(
 
 print_endline(
   Box.render(
-    ~margin=2,
-    ~padding=0,
+    ~margin=Margin.all(2),
     ~align=`Left,
     "box",
   )

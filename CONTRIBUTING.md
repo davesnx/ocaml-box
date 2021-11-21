@@ -21,7 +21,6 @@ make build
 
 After building the project, you can run the main binary that is produced.
 
-
 ```bash
 make start
 ```
@@ -30,7 +29,6 @@ make start
 
 You can run the test compiled executable:
 
-
 ```bash
 make test
 ```
@@ -38,7 +36,6 @@ make test
 ### Building documentation
 
 Documentation for the libraries in the project can be generated with:
-
 
 ```bash
 make doc

@@ -39,7 +39,7 @@ let getTerminalColumns = (): int => {
 
 type position = [ | `Left | `Center | `Right];
 
-let box = (~align=`Center, ~float=`Left, ~padding=0, ~margin=0, ~kind=Round, text) => {
+let box = (~align=`Center, ~float=`Left, ~padding=0, ~margin=Margin.empty, ~kind=Round, text) => {
   let symbols = Border.symbols(kind);
   let columns = getTerminalColumns();
   let bordersWidth = 2;
@@ -47,8 +47,8 @@ let box = (~align=`Center, ~float=`Left, ~padding=0, ~margin=0, ~kind=Round, tex
   let paddingLeftValue = padding + bordersWidth;
   let paddingLeft = renderEmpty(paddingLeftValue);
 
-  let marginTop = repeat(margin, newLine);
-  let marginBottom = repeat(margin, newLine);
+  let marginTop = repeat(margin.top, newLine);
+  let marginBottom = repeat(margin.bottom, newLine);
 
   let contentWidth = calculateWidestLine(text) + paddingLeftValue * 2;
   let horitzontalTop = repeat(contentWidth, symbols.top);
@@ -62,7 +62,7 @@ let box = (~align=`Center, ~float=`Left, ~padding=0, ~margin=0, ~kind=Round, tex
     }
   };
 
-  let marginLeftValue = calculateMarginLeft(~columns, margin);
+  let marginLeftValue = calculateMarginLeft(~columns, margin.left);
   let marginLeft = renderEmpty(marginLeftValue);
 
   let renderLine = (text) => {
