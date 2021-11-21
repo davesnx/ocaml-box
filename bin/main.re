@@ -1,9 +1,9 @@
 /* This file's purpose is to test manually and isn't public, it might serve as examples! */
 
-let separator = Box.render(
+/* let separator = Box.render(
   ~float=`Left,
   ~align=`Center,
-  ~kind=Custom({
+  ~border=Custom({
     topLeft: "",
     top: "",
     topRight: "",
@@ -25,13 +25,7 @@ print_endline(
 );
 
 print_endline(separator);
-
+ */
 print_endline(
-  Box.render(
-    ~margin=2,
-    ~padding=2,
-    ~align=`Center,
-    ~float=`Center,
-    "This \nis \na sentence",
-  )
+  Box.render(~margin=Margin.all(2), "foo")
 );
