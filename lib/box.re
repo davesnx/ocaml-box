@@ -14,7 +14,8 @@ let render = (~align=`Center, ~float=`Left, ~padding=Padding.empty, ~margin=Marg
   let marginTop = repeat(margin.top, newLine);
   let marginBottom = repeat(margin.bottom, newLine);
 
-  let contentWidth = calculateWidestLine(text) + paddingLeftValue * 2;
+  let paddingRightValueWithoutText = padding.right + bordersWidth;
+  let contentWidth = calculateWidestLine(text) + paddingLeftValue * 2 - paddingRightValueWithoutText * 2;
   let horitzontalTop = repeat(contentWidth, symbols.top);
   let horitzontalBottom = repeat(contentWidth, symbols.bottom);
 
@@ -31,7 +32,7 @@ let render = (~align=`Center, ~float=`Left, ~padding=Padding.empty, ~margin=Marg
 
   let renderLine = (text) => {
     let paddingRightValue =
-      contentWidth - textLength(text) - padding.right - bordersWidth;
+      contentWidth - textLength(text) - padding.right - bordersWidth - padding.left;
     let paddingRight = renderEmpty(paddingRightValue);
     let text = stack([paddingLeft, text, paddingRight]);
     stack(
