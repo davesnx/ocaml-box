@@ -7,8 +7,7 @@ let textLength = Base.String.length;
 let splitLines = (text) => text |> Base.String.split_lines |> List.map(String.trim);
 
 let repeat = (~between="", times, str) => {
-  let listOfStrings = Array.init(times, _ => str) |> Array.to_list;
-  String.concat(between, listOfStrings);
+  times > 0 ? Array.init(times, _ => str) |> Array.to_list |> String.concat(between) : none;
 };
 
 let calculateWidestLine = text => {
