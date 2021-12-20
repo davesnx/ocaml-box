@@ -5,9 +5,9 @@ describe("box.render()", ({test, _}) => {
     expect |> equal(
       Box.render("foo"),
       {|
-╭───────╮
-│  foo  │
-╰───────╯
+╭───╮
+│foo│
+╰───╯
 |},
     )
   );

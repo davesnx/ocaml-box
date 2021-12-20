@@ -7,9 +7,9 @@ describe("box.render(~margin)", ({test, _}) => {
       {|
 
 
-    ╭───────╮
-    │  foo  │
-    ╰───────╯
+    ╭───╮
+    │foo│
+    ╰───╯
 
 |},
     )

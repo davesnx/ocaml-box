@@ -5,9 +5,9 @@ describe("box.render(~border)", ({test, _}) => {
     expect |> equal(
       Box.render(~border=Border.Classic, "foo"),
       {|
-+-------+
-|  foo  |
-+-------+
++---+
+|foo|
++---+
 |},
     )
   );
@@ -29,9 +29,9 @@ describe("box.render(~border)", ({test, _}) => {
         "foo",
       ),
       {|
-1.......2
-.  foo  .
-4.......3
+1...2
+.foo.
+4...3
 |},
     )
   );

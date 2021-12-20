@@ -6,16 +6,15 @@ type position = [ | `Left | `Center | `Right];
 let render = (~align=`Center, ~float=`Left, ~padding=Padding.empty, ~margin=Margin.empty, ~border=Round, text) => {
   let symbols = Border.symbols(border);
   let columns = Terminal.columns();
-  let bordersWidth = 2;
 
-  let paddingLeftValue = padding.left + bordersWidth;
-  let paddingLeft = renderEmpty(paddingLeftValue);
+  let paddingLeftValue = padding.left;
+  let paddingLeft = renderSpace(paddingLeftValue);
 
   let marginTop = repeat(margin.top, newLine);
   let marginBottom = repeat(margin.bottom, newLine);
 
-  let paddingRightValueWithoutText = padding.right + bordersWidth;
-  let contentWidth = calculateWidestLine(text) + paddingLeftValue * 2 - paddingRightValueWithoutText * 2;
+  let paddingRightValueWithoutText = padding.right;
+  let contentWidth = calculateWidestLine(text) + paddingLeftValue + paddingRightValueWithoutText;
   let horitzontalTop = repeat(contentWidth, symbols.top);
   let horitzontalBottom = repeat(contentWidth, symbols.bottom);
 
@@ -28,12 +27,12 @@ let render = (~align=`Center, ~float=`Left, ~padding=Padding.empty, ~margin=Marg
   };
 
   let marginLeftValue = calculateMarginLeft(~columns, margin.left);
-  let marginLeft = renderEmpty(marginLeftValue);
+  let marginLeft = renderSpace(marginLeftValue);
 
   let renderLine = (text) => {
     let paddingRightValue =
-      contentWidth - textLength(text) - padding.right - bordersWidth - padding.left;
-    let paddingRight = renderEmpty(paddingRightValue);
+      contentWidth - textLength(text) - padding.left;
+    let paddingRight = renderSpace(paddingRightValue);
     let text = stack([paddingLeft, text, paddingRight]);
     stack(
       [marginLeft, symbols.left, text, symbols.right],

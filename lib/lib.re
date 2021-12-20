@@ -1,5 +1,5 @@
 let none = "";
-let empty = ' ';
+let space = ' ';
 let newLine = "\n";
 
 let textLength = Base.String.length;
@@ -7,7 +7,9 @@ let textLength = Base.String.length;
 let splitLines = (text) => text |> Base.String.split_lines |> List.map(String.trim);
 
 let repeat = (~between="", times, str) => {
-  times > 0 ? Array.init(times, _ => str) |> Array.to_list |> String.concat(between) : none;
+  times > 0
+    ? Array.init(times, _ => str) |> Array.to_list |> String.concat(between)
+    : none
 };
 
 let calculateWidestLine = text => {
@@ -19,9 +21,9 @@ let calculateWidestLine = text => {
     );
 };
 
-let renderEmpty = value => {
+let renderSpace = value => {
   value > 0
-    ? String.make(value, empty)
+    ? String.make(value, space)
     : none
 };
 
