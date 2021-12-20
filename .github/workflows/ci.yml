@@ -40,6 +40,9 @@ jobs:
       - name: Install dependencies
         run: opam install . --deps-only --with-doc --with-test
 
+      - name: Pin reason-native dependencies
+        run: make pin-reason-native
+
       - name: Build
         run: make build
 
