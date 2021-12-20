@@ -76,10 +76,12 @@ let render = (~align=`Center, ~float=`Left, ~padding=Padding.empty, ~margin=Marg
       ],
     );
 
-  let body =
-    padding.left == 0 && padding.right == 0
-      ? content
-      : row([paddingTop, content, paddingBottom]);
+  let body = switch (padding) {
+    | { top: 0, bottom: 0, _ } => content
+    | { top: 0, _ } => row([content, paddingBottom])
+    | { bottom: 0, _ } => row([paddingTop, content])
+    | _ => row([paddingTop, content, paddingBottom])
+  };
 
   let footer =
     stack(

@@ -27,5 +27,5 @@ print_endline(
 print_endline(separator);
  */
 print_endline(
-  Box.render(~margin=Margin.all(2), "foo")
+  Box.render(~padding=Padding.left(2), "foo")
 );
