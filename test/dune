@@ -2,24 +2,20 @@
  (name ocaml_box_test)
  (libraries rely.lib ocaml_box)
  (modules
-  (:standard \ test_runner)
- )
+  (:standard \ runner))
  (flags
-  (:standard -linkall -g -open StdLabels -open Ocaml_box -w +A-48-42-40-5))
-)
+  (:standard -linkall -g -open StdLabels -open Ocaml_box -w +A-48-42-40-5)))
 
 (executable
- (name test_runner)
+ (name runner)
  (libraries rely.lib ocaml_box_test)
- (modules test_runner)
- (flags (:standard -open StdLabels -w +A-48-42-40))
-)
+ (modules runner)
+ (flags
+  (:standard -open StdLabels -w +A-48-42-40)))
 
 (rule
  (alias runtest)
  (action
-  (run ./test_runner.exe -q --color=always)
- )
-)
+  (run ./runner.exe -q --color=always)))
 
 (include_subdirs unqualified)
