@@ -72,6 +72,14 @@ servedoc: doc ## Open odoc documentation with default web browser
 format: ## Format the codebase with ocamlformat
 	$(DUNE) build --root . --auto-promote @fmt
 
+.PHONY: format-check
+format-check: ## Checks if format is correct
+	$(DUNE) build @fmt
+
+.PHONY: watch
+watch: ## Watch for the filesystem and rebuild on every change
+	$(DUNE) build --root . --watch
+
 .PHONY: utop
 utop: ## Run a REPL and link with the project's libraries
 	$(DUNE) utop --root . lib -- -implicit-bindings
