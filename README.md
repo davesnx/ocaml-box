@@ -17,12 +17,11 @@ Port of [sindresorhus/boxen](https://github.com/sindresorhus/boxen).
 
 - Available on all major platform (Windows, Linux and Windows)
 - Render boxes with margin, padding and different borders
+- Alignment
+- Floating
 
 ### Missing Features
 
-- Alignment
-- Floating
-- Per direction margin/padding
 - Wrap ascii
 - Border Color (and dimming)
 
@@ -98,7 +97,7 @@ let render: (
 ) => string;
 ```
 
-Check `lib/box.rei` and `lib/border.rei`.
+While the documentation isn't published. Check `lib/box.rei` and `lib/border.rei`.
 
 ## Contributing
 
