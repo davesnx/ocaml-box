@@ -31,14 +31,14 @@ Port of [sindresorhus/boxen](https://github.com/sindresorhus/boxen).
 
 ```bash
 opam install box
-# Since isn't available you can install it with `opam pin https://github.com/davesnx/ocaml-box`
+# Since isn't available yet you can install it now with pinning: `opam pin https://github.com/davesnx/ocaml-box`
 ```
 
 ### Using esy
 
 ```bash
 esy add @opam/box
-# Since isn't available you can install it with `esy add https://github.com/davesnx/ocaml-box or with a resolution`
+# Since isn't available yet you can install it from the repo `esy add https://github.com/davesnx/ocaml-box or adding a resolution commit`
 ```
 
 ## Usage
@@ -47,7 +47,7 @@ It can be used in either OCaml, either Reason, showing the usage in Reason:
 
 ```reason
 print_endline(
-  Box.render(~padding=2, "I love unicorns")
+  Box.render(~padding=Padding.all(2), "I love unicorns")
 );
 /*
 ┌─────────────────────┐
@@ -58,7 +58,7 @@ print_endline(
 */
 
 print_endline(
-  Box.render(~margin=2, "I love unicorns")
+  Box.render(~margin=Margin.all(2), ~padding=Padding.all(2), "I love unicorns")
 );
 /*
 
@@ -73,7 +73,7 @@ print_endline(
 */
 
 print_endline(
-  Box.render(~kind=Border.Classic, ~margin=2, "I love unicorns")
+  Box.render(~kind=Border.Classic, ~margin=Margin.all(2), "I love unicorns")
 );
 /*
 
