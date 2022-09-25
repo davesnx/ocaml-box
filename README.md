@@ -19,10 +19,11 @@ Port of [sindresorhus/boxen](https://github.com/sindresorhus/boxen).
 - Render boxes with margin, padding and different borders
 - Alignment
 - Floating
+- No dependencies
 
 ### Missing Features
 
-- Wrap ascii
+- ascii support 
 - Border Color (and dimming)
 
 ## Installation
