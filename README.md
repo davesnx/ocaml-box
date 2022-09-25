@@ -23,82 +23,26 @@ Port of [sindresorhus/boxen](https://github.com/sindresorhus/boxen).
 
 ### Missing Features
 
-- ascii support 
+- ascii support
 - Border Color (and dimming)
 
-## Installation
-
-### Using opam
+### Install with opam
 
 ```bash
 opam install box
 # Since isn't available yet you can install it now with pinning: `opam pin https://github.com/davesnx/ocaml-box`
 ```
 
-### Using esy
+### Install with esy
 
 ```bash
 esy add @opam/box
 # Since isn't available yet you can install it from the repo `esy add https://github.com/davesnx/ocaml-box or adding a resolution commit`
 ```
 
-## Usage
+## Documentation
 
-It can be used in either OCaml, either Reason, showing the usage in Reason:
-
-```reason
-print_endline(
-  Box.render(~padding=Padding.all(2), "I love unicorns")
-);
-/*
-┌─────────────────────┐
-│                     │
-│   I love unicorns   │
-│                     │
-└─────────────────────┘
-*/
-
-print_endline(
-  Box.render(~margin=Margin.all(2), ~padding=Padding.all(2), "I love unicorns")
-);
-/*
-
-
-    ┌─────────────────────┐
-    │                     │
-    │   I love unicorns   │
-    │                     │
-    └─────────────────────┘
-
-
-*/
-
-print_endline(
-  Box.render(~kind=Border.Classic, ~margin=Margin.all(2), "I love unicorns")
-);
-/*
-
-
-    +-------------------+
-    |  I love unicorns  |
-    +-------------------+
-
-
-*/
-```
-
-### Interface
-
-```reason
-let render: (
-  ~padding: int=?,
-  ~margin: int=?,
-  ~kind: Border.t=?,
-  string
-) => string;
-```
-
-While the documentation isn't published. Check `lib/box.rei` and `lib/border.rei`.
+[Documentation](https://davesnx.github.io/ocaml-box/ocaml-box/index.html)
 
 ## Contributing
 
