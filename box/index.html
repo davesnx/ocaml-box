@@ -1,2 +1,20 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>index (box.index)</title><link rel="stylesheet" href="../odoc.css"/><meta charset="utf-8"/><meta name="generator" content="odoc 2.1.1"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><script src="../highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script></head><body class="odoc"><nav class="odoc-nav"><a href="../index.html">Up</a> – box</nav><header class="odoc-preamble"><h1 id="box-index"><a href="#box-index" class="anchor"></a>box index</h1></header><nav class="odoc-toc"><ul><li><a href="#library-box">Library box</a></li></ul></nav><div class="odoc-content"><h2 id="library-box"><a href="#library-box" class="anchor"></a>Library box</h2><p>The entry point of this library is the module: <a href="Box/index.html"><code>Box</code></a>.</p></div></body></html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>index (box.index)</title><link rel="stylesheet" href="../odoc.css"/><meta charset="utf-8"/><meta name="generator" content="odoc 2.1.1"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><script src="../highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script></head><body class="odoc"><nav class="odoc-nav"><a href="../index.html">Up</a> – box</nav><header class="odoc-preamble"><h2 id="intro"><a href="#intro" class="anchor"></a>Intro</h2><p>Render boxes in the terminal with OCaml or Reason. Port of <a href="https://github.com/sindresorhus/boxen">sindresorhus/boxen</a></p><pre><code>╭─────────────────────────────────────────────────────╮
+│                                                     │
+│   &quot;Render those kinds of boxes in the terminal&quot;     │
+│                                                     │
+╰─────────────────────────────────────────────────────╯</code></pre><p><code>render text</code> creates a box around your <code>text</code> to print it to the terminal. The text can be aligned to any position and the box can float to any position. Can control the space between the box and the outside with padding Padding.t or the space inside with margin Margin.t. Lastly, can configure the border to be one of the Border.t kinds.</p><p>Check the <a href="Box/index.html"><code>Box</code></a> page for more details</p></header><nav class="odoc-toc"><ul><li><a href="#examples">Examples</a></li></ul></nav><div class="odoc-content"><h4 id="examples"><a href="#examples" class="anchor"></a>Examples</h4><pre><code>utop # print_endline (Box.render ~padding:(Padding.all 2) &quot;I love unicorns&quot;);;
+
+┌─────────────────────┐
+│                     │
+│   I love unicorns   │
+│                     │
+└─────────────────────┘</code></pre><pre><code>utop # print_endline (Box.render ~padding:(Padding.all 0) &quot;I love unicorns&quot;);;
+
+┌──────────────────┐
+│ I love unicorns  │
+└──────────────────┘</code></pre><pre><code>utop # print_endline (Box.render ~border:Border.Classic &quot;I love unicorns&quot;)
+
++-------------------+
+|  I love unicorns  |
++-------------------+</code></pre></div></body></html>
