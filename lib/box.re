@@ -1,8 +1,8 @@
 open Terminal;
 
-type position = [ | `Left | `Center | `Right];
+type position = Left | Center | Right;
 
-let render = (~align=`Center, ~float=`Left, ~padding=Padding.empty, ~margin=Margin.empty, ~border=Border.Round, text) => {
+let render = (~align=Center, ~float=Left, ~padding=Padding.empty, ~margin=Margin.empty, ~border=Border.Round, text) => {
   let symbols = Border.symbols(border);
   let columns = Terminal.columns();
 
@@ -19,9 +19,9 @@ let render = (~align=`Center, ~float=`Left, ~padding=Padding.empty, ~margin=Marg
 
   let calculateMarginLeft = (~columns as _, value) => {
     switch (float) {
-      | `Left => value * 2
-      | `Center => contentWidth - value * 2
-      | `Right => (contentWidth * 2) - value * 2
+      | Left => value * 2
+      | Center => contentWidth - value * 2
+      | Right => (contentWidth * 2) - value * 2
     }
   };
 
@@ -42,15 +42,15 @@ let render = (~align=`Center, ~float=`Left, ~padding=Padding.empty, ~margin=Marg
     let widestLine = calculateWidestLine(text);
     let lines = splitLines(text);
     switch (align) {
-      | `Left => lines |> List.map(renderLine);
-      | `Right => {
+      | Left => lines |> List.map(renderLine);
+      | Right => {
         lines |> List.map((line) => {
           let padLeft = widestLine - textLength(line);
           let left = repeat(padLeft, " ");
           stack([left, line]) |> renderLine;
         });
       }
-      | `Center => {
+      | Center => {
         lines |> List.map((line) => {
           let padRight = (widestLine - textLength(line)) / 2;
           let left = repeat(padRight, " ");

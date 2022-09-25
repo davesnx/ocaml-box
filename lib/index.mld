@@ -1,0 +1,46 @@
+{1:intro Intro}
+
+ Render boxes in the terminal with OCaml or Reason. Port of {{: https://github.com/sindresorhus/boxen } sindresorhus/boxen }
+
+{[
+  ╭─────────────────────────────────────────────────────╮
+  │                                                     │
+  │   "Render those kinds of boxes in the terminal"     │
+  │                                                     │
+  ╰─────────────────────────────────────────────────────╯
+]}
+
+[render text] creates a box around your [text] to print it to the terminal. The text can be aligned to any position and the box can float to any position. Can control the space between the box and the outside with padding Padding.t or the space inside with margin Margin.t. Lastly, can configure the border to be one of the Border.t kinds.
+
+  Check the {!Box} page for more details
+
+  {3:examples Examples}
+
+
+  {[
+  utop # print_endline (Box.render ~padding:(Padding.all 2) "I love unicorns");;
+
+  ┌─────────────────────┐
+  │                     │
+  │   I love unicorns   │
+  │                     │
+  └─────────────────────┘
+
+  ]}
+
+
+  {[
+    utop # print_endline (Box.render ~padding:(Padding.all 0) "I love unicorns");;
+
+    ┌──────────────────┐
+    │ I love unicorns  │
+    └──────────────────┘
+  ]}
+
+  {[
+    utop # print_endline (Box.render ~border:Border.Classic "I love unicorns")
+
+    +-------------------+
+    |  I love unicorns  |
+    +-------------------+
+  ]}

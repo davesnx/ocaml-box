@@ -1,3 +1,7 @@
 (library
  (name box)
  (public_name box))
+
+(documentation
+ (package box)
+ (mld_files index))
