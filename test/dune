@@ -4,14 +4,14 @@
  (modules
   (:standard \ runner))
  (flags
-  (:standard -linkall -g -open StdLabels -w +A-48-42-40-5)))
+  (:standard -linkall -g -open StdLabels -w +A-48-42-40-5-70)))
 
 (executable
  (name runner)
  (libraries rely.lib ocaml_box_test)
  (modules runner)
  (flags
-  (:standard -open StdLabels -w +A-48-42-40)))
+  (:standard -open StdLabels -w +A-48-42-40-70)))
 
 (rule
  (alias runtest)
