@@ -1,7 +1,5 @@
 (library
  (name ocaml_box)
- (public_name ocaml-box)
- (libraries base)
-)
+ (public_name ocaml-box))
 
 (include_subdirs unqualified)
