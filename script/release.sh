@@ -20,6 +20,6 @@ if [ -d ".git" ]; then
     dune-release opam submit --no-auto-open -y
   fi
 else
-  echo "This project is not a git repository. Run `git init` first to be able to release."
+  echo "This project is not a git repository. Run \`git init\` first to be able to release."
   exit 1
 fi

@@ -1,4 +1,4 @@
-open Lib;
+open Terminal;
 open Border;
 
 type position = [ | `Left | `Center | `Right];
