@@ -1,10 +1,10 @@
 (library
  (name ocaml_box_test)
- (libraries rely.lib ocaml_box)
+ (libraries rely.lib box)
  (modules
   (:standard \ runner))
  (flags
-  (:standard -linkall -g -open StdLabels -open Ocaml_box -w +A-48-42-40-5)))
+  (:standard -linkall -g -open StdLabels -w +A-48-42-40-5)))
 
 (executable
  (name runner)

@@ -1,9 +1,8 @@
 open Terminal;
-open Border;
 
 type position = [ | `Left | `Center | `Right];
 
-let render = (~align=`Center, ~float=`Left, ~padding=Padding.empty, ~margin=Margin.empty, ~border=Round, text) => {
+let render = (~align=`Center, ~float=`Left, ~padding=Padding.empty, ~margin=Margin.empty, ~border=Border.Round, text) => {
   let symbols = Border.symbols(border);
   let columns = Terminal.columns();
 
@@ -96,3 +95,7 @@ let render = (~align=`Center, ~float=`Left, ~padding=Padding.empty, ~margin=Marg
 
   row([header, body, footer]);
 };
+
+module Border = Border;
+module Padding = Padding;
+module Margin = Margin;

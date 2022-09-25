@@ -3,7 +3,7 @@ open Framework;
 describe("box.render(~border)", ({test, _}) => {
   test("Border.Classic should render a box with classic's border", ({expect, _}) =>
     expect |> equal(
-      Box.render(~border=Border.Classic, "foo"),
+      Box.render(~border=Box.Border.Classic, "foo"),
       {|
 +---+
 |foo|
@@ -16,7 +16,7 @@ describe("box.render(~border)", ({test, _}) => {
     expect |> equal(
       Box.render(
         ~border=
-          Border.Custom({
+          Box.Border.Custom({
             topLeft: {|1|},
             top: {|.|},
             topRight: {|2|},

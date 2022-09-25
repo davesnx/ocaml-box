@@ -1,5 +1,5 @@
 (lang dune 2.0)
-(name ocaml-box)
+(name box)
 (source (github davesnx/ocaml-box))
 (license MIT)
 (authors "davesnx")
@@ -8,7 +8,7 @@
 (generate_opam_files true)
 
 (package
- (name ocaml-box)
+ (name box)
  (synopsis "Render boxes in the terminal")
  (description "\
 Render boxes in the terminal, can configure the padding, margin and the border of the box.

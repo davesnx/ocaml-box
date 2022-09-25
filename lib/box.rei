@@ -54,3 +54,11 @@ let render: (
 
 While the documentation isn't published. Check `lib/box.rei` and `lib/border.rei`.
  */
+
+module Border = Border;
+module Padding = Padding;
+module Margin = Margin;
+
+type position = [ | `Left | `Center | `Right];
+
+let render: (~align: position=?, ~float: position=?, ~padding: Padding.t=?, ~margin: Margin.t=?, ~border: Border.t=?, string) => string;

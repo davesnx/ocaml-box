@@ -29,8 +29,7 @@ Port of [sindresorhus/boxen](https://github.com/sindresorhus/boxen).
 ### Install with opam
 
 ```bash
-opam install box
-# Since isn't available yet you can install it now with pinning: `opam pin https://github.com/davesnx/ocaml-box`
+opam pin https://github.com/davesnx/ocaml-box # Since isn't available on opam, you can install it pinning
 ```
 
 ### Install with esy
