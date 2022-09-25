@@ -87,3 +87,7 @@ utop: ## Run a REPL and link with the project's libraries
 .PHONY: release
 release: all ## Run the release script
 	opam exec -- sh script/release.sh
+
+.PHONY: docs
+docs: ## Generate the documentation
+	$(DUNE) build --root . @doc
