@@ -3,7 +3,8 @@
 (version 1.2.0)
 (source (github davesnx/ocaml-box))
 (license MIT)
-(authors "davesnx")
+(authors "davesnx <dsnxmoreno@gmail.com>")
+(documentation "https://davesnx.github.io/ocaml-box/box/index.html")
 (maintainers "davesnx")
 
 (generate_opam_files true)
