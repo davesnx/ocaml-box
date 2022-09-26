@@ -5,9 +5,9 @@
 (license MIT)
 (authors "davesnx <dsnxmoreno@gmail.com>")
 (documentation "https://davesnx.github.io/ocaml-box/box/index.html")
-(maintainers "davesnx")
+(maintainers "davesnx <dsnxmoreno@gmail.com>")
 
-(generate_opam_files true)
+(generate_opam_files false)
 
 (package
  (name box)
