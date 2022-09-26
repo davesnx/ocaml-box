@@ -17,11 +17,10 @@ Render boxes in the terminal, can configure the padding, margin and the border o
 ")
  (depends
   (ocaml (>= 4.08.0))
-  (dune (>= 2.0))
+  (dune (>= 2.7))
   ; Add Rely when released on Opam
   ; (rely :with-test)
   (odoc :with-doc)
   (reason :build)
-  (fmt :dev)
  )
 )

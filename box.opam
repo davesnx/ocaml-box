@@ -13,10 +13,9 @@ doc: "https://davesnx.github.io/ocaml-box/box/index.html"
 bug-reports: "https://github.com/davesnx/ocaml-box/issues"
 depends: [
   "ocaml" {>= "4.08.0"}
-  "dune" {>= "2.7" & >= "2.0"}
+  "dune" {>= "2.7" & >= "2.7"}
   "odoc" {with-doc}
   "reason" {build}
-  "fmt" {dev}
 ]
 dev-repo: "git+https://github.com/davesnx/ocaml-box.git"
 # We need to avoid "@runtest", since it depends on rely
