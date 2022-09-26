@@ -1,5 +1,6 @@
-(lang dune 2.0)
+(lang dune 2.7)
 (name box)
+(version 1.2.0-1-g2c82fcc-dirty)
 (source (github davesnx/ocaml-box))
 (license MIT)
 (authors "davesnx")
