@@ -9,6 +9,7 @@ maintainer: ["davesnx"]
 authors: ["davesnx <dsnxmoreno@gmail.com>"]
 license: "MIT"
 homepage: "https://github.com/davesnx/ocaml-box"
+doc: "https://davesnx.github.io/ocaml-box/box/index.html"
 bug-reports: "https://github.com/davesnx/ocaml-box/issues"
 depends: [
   "ocaml" {>= "4.08.0"}
