@@ -41,7 +41,7 @@ esy add @opam/box
 
 ## Documentation
 
-[Documentation](https://davesnx.github.io/ocaml-box/ocaml-box/index.html)
+[Documentation](https://davesnx.github.io/ocaml-box/box/index.html)
 
 ## Contributing
 
