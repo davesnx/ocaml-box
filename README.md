@@ -36,7 +36,6 @@ opam install box
 
 ```bash
 esy add @opam/box
-# Since isn't available yet you can install it from the repo `esy add https://github.com/davesnx/ocaml-box or adding a resolution commit`
 ```
 
 ## Documentation
