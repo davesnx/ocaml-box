@@ -1,6 +1,6 @@
 {1:intro Intro}
 
- Render boxes in the terminal with OCaml or Reason. Port of {{: https://github.com/sindresorhus/boxen } sindresorhus/boxen }
+ Render boxes in the terminal with OCaml or Reason. Port of {{: https://github.com/sindresorhus/boxen }sindresorhus/boxen}
 
 {[
   ╭─────────────────────────────────────────────────────╮

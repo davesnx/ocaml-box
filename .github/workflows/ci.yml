@@ -7,15 +7,10 @@ on:
   pull_request:
     branches:
       - main
-  schedule:
-    # Prime the caches every Monday
-    - cron: 0 1 * * MON
 
 jobs:
   build:
     name: Build and test
-
-    runs-on: ${{ matrix.os }}
 
     strategy:
       fail-fast: false
@@ -23,34 +18,21 @@ jobs:
         os:
           - macos-latest
           - ubuntu-latest
-        # - windows-latest
-        ocaml-compiler:
-          - 4.12.0
+          - windows-latest
+
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Use OCaml ${{ matrix.ocaml-compiler }}
-        uses: ocaml/setup-ocaml@v2
+      - name: Use dune
+        uses: ocaml-dune/setup-dune@v0
         with:
-          ocaml-compiler: ${{ matrix.ocaml-compiler }}
-          dune-cache: ${{ matrix.os != 'macos-latest' }}
-
-      - name: Install dependencies
-        run: opam install . --deps-only --with-doc --with-test
-
-      - name: Pin reason-native dependencies
-        run: make pin-reason-native
-
-      - name: Build
-        run: make build
-
-      - name: Run tests
-        run: make test
+          automagic: true
 
       - name: Build documentation
-        run: make doc
+        run: dune build @doc
 
       - name: Deploying to github pages
         uses: peaceiris/actions-gh-pages@v3

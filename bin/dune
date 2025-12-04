@@ -1,8 +1,3 @@
 (executable
  (name main)
- (public_name box-bin)
- (libraries box)
- (flags
-  (:standard -open Box)))
-
-(include_subdirs unqualified)
+ (libraries box))

@@ -1,21 +1,3 @@
-(library
- (name ocaml_box_test)
- (libraries rely.lib box)
- (modules
-  (:standard \ runner))
- (flags
-  (:standard -linkall -g -open StdLabels -w +A-48-42-40-5-70)))
-
-(executable
+(test
  (name runner)
- (libraries rely.lib ocaml_box_test)
- (modules runner)
- (flags
-  (:standard -open StdLabels -w +A-48-42-40-70)))
-
-(rule
- (alias runtest)
- (action
-  (run ./runner.exe -q --color=always)))
-
-(include_subdirs unqualified)
+ (libraries alcotest box))

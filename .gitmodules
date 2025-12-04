@@ -1,3 +1,0 @@
-[submodule "vendor/reason-native"]
-	path = vendor/reason-native
-	url = https://github.com/facebookexperimental/reason-native
